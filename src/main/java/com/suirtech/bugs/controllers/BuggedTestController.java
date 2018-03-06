@@ -1,8 +1,6 @@
 package com.suirtech.bugs.controllers;
 
-import com.suirtech.bugs.model.Bug;
 import com.suirtech.bugs.model.BuggedTest;
-import com.suirtech.bugs.service.BugService;
 import com.suirtech.bugs.service.BuggedTestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +34,7 @@ public class BuggedTestController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<BuggedTest> view(@PathVariable(value = "id") Long id) {
+    public BuggedTest view(@PathVariable(value = "id") Long id) {
         return buggedTestService.getById(id);
     }
 

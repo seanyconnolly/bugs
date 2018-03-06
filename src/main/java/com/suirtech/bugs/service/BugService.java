@@ -1,40 +1,25 @@
 package com.suirtech.bugs.service;
 
 import com.suirtech.bugs.model.Bug;
-import com.suirtech.bugs.repositories.BugRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class BugService {
+public interface BugService {
 
+    List<Bug> list();
 
-    private BugRepository bugRepository;
+    Bug getById(Long id);
 
-    @Autowired
-    public BugService(BugRepository bugRepository){
-        this.bugRepository = bugRepository;
-    }
+    Bug getByIssue(String issue);
 
-    public Bug getLatestBug(){
-        return bugRepository.findFirstByOrderByIdDesc();
-    }
+    Bug create(Bug bug);
 
-    public List<Bug> list() {
-        return bugRepository.findAllByOrderByIdDesc();
-    }
+    Bug read(long id);
 
-    public Optional<Bug> getById(Long id) {
-        return bugRepository.findById(id);
-    }
+    Bug update(long id, Bug bug);
 
-    public Bug getByIssue(String issue) {
-        return bugRepository.findByIssue(issue);
-    }
-
+    void delete(long id);
 
 }
 

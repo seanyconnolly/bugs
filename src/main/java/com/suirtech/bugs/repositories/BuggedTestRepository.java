@@ -9,5 +9,7 @@ public interface BuggedTestRepository extends CrudRepository<BuggedTest, Long>{
 
     List<BuggedTest> findAllByOrderByIdDesc();
 
+//    BuggedTest findOne(Long id);
+
 
 }

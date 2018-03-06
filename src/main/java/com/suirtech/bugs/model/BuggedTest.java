@@ -15,7 +15,6 @@ public class BuggedTest {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "bug_id")
     @JsonBackReference
     private Bug bug;
 
