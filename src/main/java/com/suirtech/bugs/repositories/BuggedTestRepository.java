@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface BuggedTestRepository extends CrudRepository<BuggedTest, Long>{
+public interface BuggedTestRepository extends CrudRepository<BuggedTest, Long> {
 
     List<BuggedTest> findAllByOrderByIdDesc();
 

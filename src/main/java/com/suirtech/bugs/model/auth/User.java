@@ -8,86 +8,87 @@ import java.util.Set;
 
 
 @Entity
-@Table( name="users" )
+@Table(name = "users")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column( unique=true, nullable=false )
-	private String username;
-	
-	@Column( unique=true, nullable=false )
-	private String email;
-	
-	@Column( nullable=false )
-	private String password;
-	
-	private String fullName;
-	
-	@ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-	@JoinTable( 
-		name = "users_roles", 
-		joinColumns = {@JoinColumn(name="user_id")}, 
-		inverseJoinColumns = {@JoinColumn(name="role_id")}  
-	)
-	private Set<Role> roles = new HashSet<Role>();
-	
-	private User() {}
+    @Column(unique = true, nullable = false)
+    private String username;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(unique = true, nullable = false)
+    private String email;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(nullable = false)
+    private String password;
 
-	public String getUsername() {
-		return username;
-	}
+    private String fullName;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> roles = new HashSet<Role>();
 
-	public String getEmail() {
-		return email;
-	}
+    private User() {
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Set<Role> getRoles() {
-		return roles;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
+    }
+
+
 }

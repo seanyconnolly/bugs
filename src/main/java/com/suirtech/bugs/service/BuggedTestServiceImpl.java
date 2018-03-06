@@ -13,7 +13,7 @@ public class BuggedTestServiceImpl implements BuggedTestService {
     private BuggedTestRepository buggedTestRepository;
 
     @Autowired
-    public BuggedTestServiceImpl(BuggedTestRepository buggedTestRepository){
+    public BuggedTestServiceImpl(BuggedTestRepository buggedTestRepository) {
         this.buggedTestRepository = buggedTestRepository;
     }
 

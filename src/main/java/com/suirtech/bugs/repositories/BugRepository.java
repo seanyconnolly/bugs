@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BugRepository extends CrudRepository<Bug, Long>{
+public interface BugRepository extends CrudRepository<Bug, Long> {
 
     Bug findFirstByOrderByIdDesc();
 

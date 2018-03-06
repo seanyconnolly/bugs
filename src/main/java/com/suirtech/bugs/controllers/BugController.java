@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.soap.SOAPPart;
-
 
 @RestController
 @RequestMapping("/bugs")
@@ -26,15 +24,14 @@ public class BugController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping( value = "/", method = RequestMethod.POST )
-    public Bug create(@RequestBody Bug bug){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public Bug create(@RequestBody Bug bug) {
         return bugService.create(bug);
     }
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<Bug> listBugs() {
-        logger.info("WILL GET ALL BUGS");
         return bugService.list();
     }
 
