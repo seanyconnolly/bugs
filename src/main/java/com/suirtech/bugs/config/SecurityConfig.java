@@ -1,5 +1,8 @@
 package com.suirtech.bugs.config;
 
+import com.suirtech.bugs.security.RESTAuthenticationEntryPoint;
+import com.suirtech.bugs.security.RESTAuthenticationFailureHandler;
+import com.suirtech.bugs.security.RESTAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userService;
 
+    @Autowired
+    private RESTAuthenticationEntryPoint authenticationEntryPoint;
+    @Autowired
+    private RESTAuthenticationFailureHandler authenticationFailureHandler;
+    @Autowired
+    private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
+
+
 
     @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
@@ -26,14 +37,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/**").hasRole("ADMIN")
-                .antMatchers("/**").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/**").hasRole("ADMIN")
+//                .antMatchers("/**").hasRole("USER")
+//                .anyRequest().authenticated()
+//                .and()
+//                .httpBasic();
+//
+//        http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+//        http.formLogin().successHandler(authenticationSuccessHandler);
+//        http.formLogin().failureHandler(authenticationFailureHandler);
+
+        http.authorizeRequests().antMatchers("/login/**").authenticated();
+        http.csrf().disable();
+        http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+        http.formLogin().successHandler(authenticationSuccessHandler);
+        http.formLogin().failureHandler(authenticationFailureHandler);
 
     }
 
